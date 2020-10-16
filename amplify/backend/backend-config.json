@@ -1,6 +1,6 @@
 {
   "auth": {
-    "spacexweb2c3dd3ea3": {
+    "spacexweb27383a2e": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
