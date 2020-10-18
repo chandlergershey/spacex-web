@@ -6,15 +6,15 @@ import {Auth} from 'aws-amplify';
 import Home from './pages/LandingPage';
 //import Auth from './pages/Auth';
 import Launches from './pages/Launches';
-import MyAuth from './pages/MyAuth';
+import Authentication from './pages/Authentication';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' component={MyAuth}/>
-          <Route path='/login' component={Home}/>
+          <Route exact path='/' component={Home}/>
+          <Route path='/login' component={Authentication}/>
         </Switch>
       </Router>
     );

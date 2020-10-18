@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Auth, Hub} from 'aws-amplify';
+import '../App.scss';
+import Launches from './Launches';
+import { Link } from 'react-router-dom';
+
+import LandingPage from '../pages/LandingPage';
 
 const initialFormState = {
   username: '', password: '', email: '', authCode: '', formType: 'signUp'
@@ -19,7 +24,7 @@ function MyAuth() {
       switch (data.payload.event) {
         case 'signOut':
           console.log('user signed out');
-          updateFormState(() => ({...formState, formType: "signUp"}));
+          updateFormState(() => ({...formState, formType: "landingPage"}));
           break;
         default:
           break;
@@ -63,7 +68,20 @@ function MyAuth() {
   }
 
   return (
-    <div className="App">
+    <div className="fullscreen">
+      {
+        formType==='landingPage' && (
+          <div>
+            <h1>Landing Page</h1>
+            <button onClick={() => updateFormState(() => ({
+              ...formState, formType: "signUp"
+            }))}>Enter Site</button>
+            
+          </div>
+          // <LandingPage />
+          
+        )
+      }
       {
         formType==='signUp' && (
           <div>
@@ -98,9 +116,13 @@ function MyAuth() {
       {
         formType==='signedIn' && (
           <div>
-            <button onClick={
-              () => Auth.signOut()
-            }>Sign Out</button>
+            <Launches/>
+            <Link to='/'>
+              <button onClick={
+                () => Auth.signOut()
+              }>Sign Out</button>
+            </Link>
+            
           </div>
         )
       }

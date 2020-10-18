@@ -10,7 +10,7 @@ export default function Header() {
     <div className=''>
         <Link to='/login'>
           <BootstrapButton color="primary" className="login-button" >
-            Login
+            Enter site
           </BootstrapButton>
         </Link>
     </div>
