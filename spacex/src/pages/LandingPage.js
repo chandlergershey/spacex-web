@@ -1,9 +1,9 @@
 import React, {Suspense, useRef} from "react";
 import "./LandingPage.scss";
-import { Section } from "../components/section";
+import { Section } from "../components/Section";
 import { Canvas, useFrame } from "react-three-fiber";
 import {Html, useGLTFLoader} from 'drei';
-import LoginHeader from '../components/login-header';
+import LoginHeader from '../components/LoginHeader';
 
 // MARS MODEL
 const Model = () => {
@@ -49,14 +49,16 @@ const HTMLContent = () => {
 export default function App() {
   return (
     <>
-      <LoginHeader />
-      <div className="mars-container">
-        <Canvas colorManagement camera={{ position: [0, 0, 120], fov: 70}}>
-          <Lights />
-          <Suspense fallback={null}>
-            <HTMLContent/>
-          </Suspense>
-        </Canvas>
+      <div className="landing-page-container">
+        <LoginHeader />
+        <div className="mars-container">
+          <Canvas colorManagement camera={{ position: [0, 0, 120], fov: 70}}>
+            <Lights />
+            <Suspense fallback={null}>
+              <HTMLContent/>
+            </Suspense>
+          </Canvas>
+        </div>
       </div>
     </>
   );

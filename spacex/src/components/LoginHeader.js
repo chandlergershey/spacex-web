@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-//import MaterialButton from '@material-ui/core/Button';
 import BootstrapButton from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../scss/Buttons.scss';

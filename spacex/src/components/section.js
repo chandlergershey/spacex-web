@@ -1,9 +1,15 @@
-import React, { createContext, useRef, useContext } from "react";
+import React, { createContext, useRef, createRef, useContext } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import lerp from "lerp";
-import state from "./state";
 
 const offsetContext = createContext(0);
+
+const state = {
+  sections: 3,
+  pages: 3,
+  zoom: 1,
+  top: createRef(),
+};
 
 function Section({ children, offset, factor, ...props }) {
   const { offset: parentOffset, sectionHeight, aspect } = useSection();
