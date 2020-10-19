@@ -7,7 +7,7 @@
 
   .authentication-container{
     max-width: 800px;
-    background-color: rgba(0, 0, 0, 0.815);
+    background-color: rgba(0, 0, 0, 0.5);
     box-shadow:
           0 0 60px 30px rgba(255, 255, 255, 0.5),  /* inner white */
           0 0 100px 60px rgba(255, 0, 255, 0.5), /* middle magenta */
@@ -24,6 +24,8 @@
   
     .authentication-text{
       color: white;
+      background: black;
+      width: fit-content;
     }
 
     .authentication-input {
@@ -38,7 +40,7 @@
     }
 
     .auth_no_format_button{
-      background: none;
+      background: black;
       border: none;
       color: white;
       text-decoration: underline;

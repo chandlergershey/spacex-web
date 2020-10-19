@@ -98,24 +98,11 @@ function MyAuth() {
                 ...formState, formType: "signUp"
               }))}>Enter Site</button>
               
-            </div>
-            // <LandingPage />
-            
+            </div>            
           )
         }
         {
           formType==='signUp' && (
-            // <div>
-            //   <input name="username" onChange={onChange} placeholder="username" />
-            //   <input name="password" type="password" onChange={onChange} placeholder="password" />
-            //   <input name="email" onChange={onChange} placeholder="email" />
-            //   <button onClick={signUp}>Sign Up</button>
-            //   <button onClick={() => updateFormState(() => ({
-            //     ...formState, formType: "signIn"
-            //   }))}>Sign In</button>
-            // </div>
-            // <CreateAccountForm />
-
             <div className="authentication-container">
               <h1 className='authentication-text authentication_headline'>Create a new account</h1>
               <div>
@@ -143,12 +130,6 @@ function MyAuth() {
         }
         {
           formType==='confirmSignUp' && (
-            // <div>
-            //   <input name="" onChange={onChange} placeholder="username" />
-            //   <input name="authCode" onChange={onChange} placeholder="Confirmation code" />
-            //   <button onClick={confirmSignUp}>Confirm Sign Up</button>
-            // </div>
-
             <div className="authentication-container">
               <h1 className='authentication-text authentication_headline'>Confirm Sign Up</h1>
               <div>
@@ -165,10 +146,7 @@ function MyAuth() {
               <h6 className='authentication-text extra_auth_features'><button className="auth_no_format_button" onClick={() => updateFormState(() => ({
                 ...formState, formType: "signIn"
               }))}>Back to Sign In</button></h6>
-
             </div>
-            
-
           )
         }
         {
@@ -191,12 +169,10 @@ function MyAuth() {
                 <h6 className='authentication-text'>Password</h6>
                 <input className='authentication-input' name="password" type="password" onChange={onChange} placeholder="Enter your password" />
               </div>
-              
               <Button onClick={signIn} variant="outline-light">SIGN IN</Button>
               <h6 className='authentication-text extra_auth_features'>No account? <button className="auth_no_format_button" onClick={() => updateFormState(() => ({
                 ...formState, formType: "signUp"
               }))}>Create account</button></h6>
-
             </div>
             
           )

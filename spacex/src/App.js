@@ -24,6 +24,13 @@ const AuthStateApp = () => {
 
   return authState === AuthState.SignedIn && user ? (
       <div className="App">
+        {/* <Router>
+          <Switch>
+          <Route exact path='/' component={Home}/>
+            <Route path='/launches' component={Launches}/>
+          </Switch>
+        </Router> */}
+          
           <Launches />
           {/* <AmplifyAuthenticator /> */}
       </div>
