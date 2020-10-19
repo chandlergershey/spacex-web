@@ -1,7 +1,7 @@
 import React, {Suspense, useRef} from "react";
 import "./LandingPage.scss";
 //import { Section } from "../components/Section";
-import { Section } from '../components/Section';
+import { Section } from '../components/MarsSection';
 import { Canvas, useFrame } from "react-three-fiber";
 import {Html, useGLTFLoader} from 'drei';
 import LoginHeader from '../components/LoginHeader';
