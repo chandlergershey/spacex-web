@@ -4,6 +4,7 @@ import { Section } from "../components/Section";
 import { Canvas, useFrame } from "react-three-fiber";
 import {Html, useGLTFLoader} from 'drei';
 import LoginHeader from '../components/LoginHeader';
+import { Auth } from 'aws-amplify'
 
 // MARS MODEL
 const Model = () => {
@@ -63,3 +64,4 @@ export default function App() {
     </>
   );
 }
+
