@@ -1,0 +1,53 @@
+.authentication_page_container {
+  background-image: url(../../assets/images/space.jpg);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+  .authentication-container{
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.815);
+    box-shadow:
+          0 0 60px 30px rgba(255, 255, 255, 0.5),  /* inner white */
+          0 0 100px 60px rgba(255, 0, 255, 0.5), /* middle magenta */
+          0 0 140px 90px rgba(0, 255, 255, 0.5); /* outer cyan */
+  
+    border: 10px solid white;
+    padding: 40px;
+    border-radius: 25px;
+    margin: 100px auto;
+
+    .authentication_headline {
+      margin-bottom: 25px;
+    }
+  
+    .authentication-text{
+      color: white;
+    }
+
+    .authentication-input {
+      width: 100%;
+      padding: 5px;
+      border-radius: 7px;
+      margin-bottom: 18px;
+    }
+
+    .extra_auth_features{
+      margin-top: 15px;
+    }
+
+    .auth_no_format_button{
+      background: none;
+      border: none;
+      color: white;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.507);
+    }
+  }
+}
+
+
+
+
+

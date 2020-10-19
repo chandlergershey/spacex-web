@@ -5,6 +5,7 @@ import '../scss/Buttons.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ComplexGrid from '../components/ComplexGrid';
 import Navbar from '../components/navbar';
+import SignUp from '../components/Authentication/SignIn';
 
 
 function launches() {
@@ -22,6 +23,8 @@ function launches() {
       </MaterialButton>
 
       <ComplexGrid />
+
+      {/* <SignUp /> */}
 
 
     </>
