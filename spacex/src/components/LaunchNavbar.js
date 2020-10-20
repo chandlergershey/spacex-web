@@ -2,6 +2,7 @@ import React from 'react'
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import './LaunchNavbar.scss';
 import {Auth} from 'aws-amplify';
+import SpaceXLogo from '../assets/images/spacex-logo.svg';
 // import { useHistory } from "react-router-dom";
 
 function LaunchNavbar() {
@@ -15,7 +16,11 @@ function LaunchNavbar() {
   return (
     <div className="launch_navbar_container">
       <Navbar className='launch_navbar' collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">SPACEX</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <a href="#">
+            <img src={SpaceXLogo} style={{width:150, marginTop: -7, marginLeft: 20}} />
+          </a>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
@@ -25,7 +30,7 @@ function LaunchNavbar() {
             
           </Nav>
           <Nav id="nav-dropdown">
-            <NavDropdown alignRight  title="My Account" id="collasible-nav-dropdown">
+            <NavDropdown alignRight title="My Account" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Liked Launches</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">My Payloads</NavDropdown.Item>
                 <NavDropdown.Divider />

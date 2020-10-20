@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import './Countdown.scss';
+import {Row, Col, Container} from 'react-bootstrap';
 
 /**
  * Note : 
@@ -84,36 +86,37 @@ class Countdown extends Component {
     const countDown = this.state;
 
     return (
-      <div className="Countdown">
-        <span className="Countdown-col">
-          <span className="Countdown-col-element">
-              <strong>{this.addLeadingZeros(countDown.days)}</strong>
-              <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
-          </span>
-        </span>
 
-        <span className="Countdown-col">
-          <span className="Countdown-col-element">
-            <strong>{this.addLeadingZeros(countDown.hours)}</strong>
-            <span>Hours</span>
-          </span>
-        </span>
-
-
-        <span className="Countdown-col">
-          <span className="Countdown-col-element">
-            <strong>{this.addLeadingZeros(countDown.min)}</strong>
-            <span>Min</span>
-          </span>
-        </span>
-
-        <span className="Countdown-col">
-          <span className="Countdown-col-element">
-            <strong>{this.addLeadingZeros(countDown.sec)}</strong>
-            <span>Sec</span>
-          </span>
-        </span>
-      </div>
+      <Container className="Countdown_container">
+        <Row>
+          <Col className="Countdown_digit">
+            {this.addLeadingZeros(countDown.days)}
+          </Col>
+          <Col className="Countdown_digit">
+            {this.addLeadingZeros(countDown.hours)}
+          </Col>
+          <Col className="Countdown_digit">
+            {this.addLeadingZeros(countDown.min)}
+          </Col>
+          <Col className="Countdown_digit">
+            {this.addLeadingZeros(countDown.sec)}
+          </Col>
+        </Row>
+        <Row>
+          <Col className="Countdown_text">
+            {countDown.days === 1 ? 'Day' : 'Days'}
+          </Col>
+          <Col className="Countdown_text">
+            {countDown.hours === 1 ? 'Hour' : 'Hours'}
+          </Col>
+          <Col className="Countdown_text">
+            {countDown.min === 1 ? 'Minute' : 'Minutes'}
+          </Col>
+          <Col className="Countdown_text">
+           {countDown.sec === 1 ? 'Seconds' : 'Seconds'}
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

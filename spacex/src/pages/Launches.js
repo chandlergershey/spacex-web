@@ -14,6 +14,7 @@ import NextLaunch from './NextLaunch';
 
 
 function launches() {
+  
   return (
     <>
     <LaunchNavbar />
@@ -29,7 +30,8 @@ function launches() {
       <ComplexGrid /> */}
       {/* <SignUp /> */}
 
-      <NextLaunch />
+      {/* <NextLaunch /> */}
+      <PastLaunches />
 
 
 

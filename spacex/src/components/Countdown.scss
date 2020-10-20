@@ -1,0 +1,23 @@
+.Countdown_container{
+  max-width: 400px;
+  margin: 0 auto;
+
+
+  .Countdown_digit{
+    text-align: center;
+    color: black;
+    background: rgb(181,181,181);
+    background: linear-gradient(0deg, rgb(109, 109, 109) 0%, rgb(231, 231, 231) 25%, rgba(255,255,255,1) 100%);
+    padding: 5px;
+    margin: 5px;
+    border-radius: 15px;
+  }
+
+  .Countdown_text{
+    text-align: center;
+    font-size: 20px;
+    padding: 0px 5px;
+    margin: 0px 5px;
+  }
+}
+

@@ -5,10 +5,6 @@ import Countdown from '../components/Countdown';
  
 import axios from 'axios'
 
-
-
-
-
 class NextLaunch extends React.Component {
 
   constructor(props) {
@@ -27,13 +23,10 @@ class NextLaunch extends React.Component {
         isLoaded: true,
         nextLaunch: json
       });
-      console.log(this.state.nextLaunch.data.flight_number);
+      console.log(this.state.nextLaunch.data);
     })
     .catch(error => console.error(error));
   }
-
-
-
 
   render(){
     const currentDate = new Date();
@@ -44,22 +37,41 @@ class NextLaunch extends React.Component {
     if(!isLoaded) {
       return <h1>Loading</h1>;
     } else {
+
+      const missionName = this.state.nextLaunch.data.mission_name;
+      const flightNumber = this.state.nextLaunch.data.flight_number;
+      const rocketName = this.state.nextLaunch.data.rocket.rocket_name;
+      const launchDateUTC = this.state.nextLaunch.data.launch_date_local.substring(0,19);
+      const launchSite = this.state.nextLaunch.data.launch_site.site_name;
+      const payloadType = this.state.nextLaunch.data.rocket.second_stage.payloads[0].payload_type;
+      const payloadMassKg = this.state.nextLaunch.data.rocket.second_stage.payloads[0].payload_mass_kg;
+
+  
+
       return (
         <div className="past_launches_container">
           <div className="launch_headline">
+            <Container>
+              <Row>
+                <Col>
+                  <div className="launch_mission_name">{missionName}</div>
+                  <div className="launch_mission_name_text">Mission Name</div>
+                </Col>
+                <Col>
+                  <Countdown date={launchDateUTC} />
+                </Col>
+              </Row>
+            </Container>
+            
+            {/* <div className="">{flightNumber}</div>
+            <div className="">Flight Number</div>
+            <div className="">{launchDateUTC}</div>
+            <div className="">Launch Date</div> */}
 
-            <div className="past_launches_header">{this.state.nextLaunch.data.flight_number}</div>
-            <div className="past_launches_header">{this.state.nextLaunch.data.rocket.rocket_name}</div>
-            {/* {
-              true === true || this.state.nextLaunch.map( rocket => (
-                <div className="past_launches_header">Hi</div>
-              ))
-              // <div className="past_launches_header">NEXT LAUNCH</div>
-            } */}
-            <div className="past_launches_header"></div>
+
             
             
-            <Countdown date={`${year}-12-24T00:00:00`} />
+            
     
           </div>
           <div className="">
@@ -69,14 +81,18 @@ class NextLaunch extends React.Component {
               <Container>
                 <Row className="justify-content-md-center">
                   <Col className="launch_modal_info_container">
-                    Rocket
+                    <div>Rocket</div> <div>{rocketName}</div>
                   </Col>
                   <Col className="launch_modal_info_container">Weather</Col>
-                  <Col className="launch_modal_info_container">Launch Site</Col>
+                  <Col className="launch_modal_info_container">
+                    <div>Launch Site</div> <div>{launchSite}</div>
+                  </Col>
                 </Row>
                 <Row className="justify-content-md-center">
                   <Col className="launch_modal_info_container">Destination</Col>
-                  <Col className="launch_modal_info_container">Payload</Col>
+                  <Col className="launch_modal_info_container">
+                    Payload <div>{payloadType}</div><div>{payloadMassKg} kg</div>
+                  </Col>
                   <Col className="launch_modal_info_container">Social</Col>
                 </Row>
               </Container>
