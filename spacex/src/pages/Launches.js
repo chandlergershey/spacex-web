@@ -10,6 +10,7 @@ import LaunchNavbar from '../components/LaunchNavbar';
 import './Launches.scss';
 
 import PastLaunches from './PastLaunches';
+import NextLaunch from './NextLaunch';
 
 
 function launches() {
@@ -28,7 +29,7 @@ function launches() {
       <ComplexGrid /> */}
       {/* <SignUp /> */}
 
-      <PastLaunches />
+      <NextLaunch />
 
 
 

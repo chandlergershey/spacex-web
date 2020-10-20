@@ -98,3 +98,32 @@
     }
   }
 }
+
+
+
+.launch_headline{
+  color: white;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.launch_modal_info_container{
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  height: 250px;
+  max-width: 250px;
+  background-color: rgb(19, 1, 83);
+  border: 5px solid white;
+  margin: 15px;
+  border-radius:25px;
+  -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+  &:hover {
+    background-color:rgb(0, 21, 116);
+  }
+}
