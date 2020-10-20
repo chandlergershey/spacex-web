@@ -3,21 +3,21 @@ import {Auth, Hub} from 'aws-amplify';
 import '../App.scss';
 import Launches from './Launches';
 import { Link } from 'react-router-dom';
-import SignUpForm from '../components/Authentication/SignIn';
-import CreateAccountForm from '../components/Authentication/SignUp';
-import {Form, Button} from 'react-bootstrap';
-// import './Authentication.scss';
-import '../components/Authentication/Authentication.scss'
+import {Button} from 'react-bootstrap';
+import '../components/Authentication/Authentication.scss';
+import { useHistory } from 'react-router-dom';
 
-import LandingPage from '../pages/LandingPage';
+import Home from '../pages/LandingPage';
 
 const initialFormState = {
-  username: '', password: '', email: '', authCode: '', formType: 'signUp'
+  username: '', password: '', email: '', authCode: '', formType: 'signIn'
 }
 
 function MyAuth() {
   const [formState, updateFormState] = useState(initialFormState);
   const [user, updateUser] = useState(null)
+
+  let history = useHistory();
 
   useEffect(()=> {
     checkUser()
@@ -81,6 +81,7 @@ function MyAuth() {
       const {username, password} = formState;
       await Auth.signIn(username, password);
       updateFormState(() => ({ ...formState, formType: "signedIn" }));
+      history.push('/launches');
     } catch {
       alert('Error signing in. Please try again.');
     }
@@ -89,7 +90,7 @@ function MyAuth() {
 
   return (
     
-      <div className="authentication_page_container">
+      <div className="fullscreen">
         {
           formType==='landingPage' && (
             <div>
@@ -103,89 +104,93 @@ function MyAuth() {
         }
         {
           formType==='signUp' && (
-            <div className="authentication-container">
-              <h1 className='authentication-text authentication_headline'>Create a new account</h1>
-              <div>
-                <h6 className='authentication-text'>Username</h6>
-                <input className='authentication-input' name="username" onChange={onChange} placeholder="username" />
-              </div>
+            <div className="authentication_page_container">
+              <div className="authentication-container">
+                <h1 className='authentication-text authentication_headline'>Create a new account</h1>
+                <div>
+                  <h6 className='authentication-text'>Username</h6>
+                  <input className='authentication-input' name="username" onChange={onChange} placeholder="username" />
+                </div>
 
-              <div>
-                <h6 className='authentication-text'>Password</h6>
-                <input className='authentication-input' name="password" type="password" onChange={onChange} placeholder="password" />
-              </div>
+                <div>
+                  <h6 className='authentication-text'>Password</h6>
+                  <input className='authentication-input' name="password" type="password" onChange={onChange} placeholder="password" />
+                </div>
 
-              <div>
-                <h6 className='authentication-text'>Email Address</h6>
-                <input className='authentication-input' name="email" onChange={onChange} placeholder="email" />
-              </div>
-              
-              <Button onClick={signUp} variant="outline-light">Sign Up</Button>
-              <h6 className='authentication-text extra_auth_features'>Have an account? <button className="auth_no_format_button" onClick={() => updateFormState(() => ({
-                ...formState, formType: "signIn"
-              }))}>Sign In</button></h6>
+                <div>
+                  <h6 className='authentication-text'>Email Address</h6>
+                  <input className='authentication-input' name="email" onChange={onChange} placeholder="email" />
+                </div>
+                
+                <Button onClick={signUp} variant="outline-light">Sign Up</Button>
+                <h6 className='authentication-text extra_auth_features'>Have an account? <button className="auth_no_format_button" onClick={() => updateFormState(() => ({
+                  ...formState, formType: "signIn"
+                }))}>Sign In</button></h6>
 
+              </div>
             </div>
+            
           )
         }
         {
           formType==='confirmSignUp' && (
-            <div className="authentication-container">
-              <h1 className='authentication-text authentication_headline'>Confirm Sign Up</h1>
-              <div>
-                <h6 className='authentication-text'>Username</h6>
-                <input className='authentication-input' name="username" onChange={onChange} placeholder="Enter your username" />
-              </div>
+            <div className="authentication_page_container">
+              <div className="authentication-container">
+                <h1 className='authentication-text authentication_headline'>Confirm Sign Up</h1>
+                <div>
+                  <h6 className='authentication-text'>Username</h6>
+                  <input className='authentication-input' name="username" onChange={onChange} placeholder="Enter your username" />
+                </div>
 
-              <div>
-                <h6 className='authentication-text'>Confirmation Code</h6>
-                <input className='authentication-input' name="authCode" onChange={onChange} placeholder="Enter your code" />
-              </div>
-              
-              <Button onClick={confirmSignUp} variant="outline-light">CONFIRM</Button>
-              <h6 className='authentication-text extra_auth_features'><button className="auth_no_format_button" onClick={() => updateFormState(() => ({
-                ...formState, formType: "signIn"
-              }))}>Back to Sign In</button></h6>
+                <div>
+                  <h6 className='authentication-text'>Confirmation Code</h6>
+                  <input className='authentication-input' name="authCode" onChange={onChange} placeholder="Enter your code" />
+                </div>
+                
+                <Button onClick={confirmSignUp} variant="outline-light">CONFIRM</Button>
+                <h6 className='authentication-text extra_auth_features'><button className="auth_no_format_button" onClick={() => updateFormState(() => ({
+                  ...formState, formType: "signIn"
+                }))}>Back to Sign In</button></h6>
+              </div>  
             </div>
           )
         }
         {
           formType==='signIn' && (
-            // <SignUpForm />
-            // <div>
-            //   <input name="username" onChange={onChange} placeholder="username" />
-            //   <input name="password" type="password" onChange={onChange} placeholder="password" />
-            //   <button onClick={signIn}>Sign In</button>
-            // </div>
-            
-            <div className="authentication-container">
-              <h1 className='authentication-text authentication_headline'>Sign in to your account</h1>
-              <div>
-                <h6 className='authentication-text'>Username</h6>
-                <input className='authentication-input' name="username" onChange={onChange} placeholder="Enter your username" />
-              </div>
+            <div className="authentication_page_container">
+              <div className="authentication-container">
+                <h1 className='authentication-text authentication_headline'>Sign in to your account</h1>
+                <div>
+                  <h6 className='authentication-text'>Username</h6>
+                  <input className='authentication-input' name="username" onChange={onChange} placeholder="Enter your username" />
+                </div>
 
-              <div>
-                <h6 className='authentication-text'>Password</h6>
-                <input className='authentication-input' name="password" type="password" onChange={onChange} placeholder="Enter your password" />
+                <div>
+                  <h6 className='authentication-text'>Password</h6>
+                  <input className='authentication-input' name="password" type="password" onChange={onChange} placeholder="Enter your password" />
+                </div>
+                <Button onClick={signIn} variant="outline-light">SIGN IN</Button>
+                <h6 className='authentication-text extra_auth_features'>No account? <button className="auth_no_format_button" onClick={() => updateFormState(() => ({
+                  ...formState, formType: "signUp"
+                }))}>Create account</button></h6>
               </div>
-              <Button onClick={signIn} variant="outline-light">SIGN IN</Button>
-              <h6 className='authentication-text extra_auth_features'>No account? <button className="auth_no_format_button" onClick={() => updateFormState(() => ({
-                ...formState, formType: "signUp"
-              }))}>Create account</button></h6>
             </div>
-            
           )
         }
         {
           formType==='signedIn' && (
             <div>
-              <Launches/>
+              {/* <Launches/> */}
               <Link to='/'>
                 <button onClick={
                   () => Auth.signOut()
                 }>Sign Out</button>
               </Link>
+              {/* <Router>
+                <Switch>
+                  <Route exact path='/' component={Home}/>
+                </Switch>
+              </Router> */}
               
             </div>
           )

@@ -39,6 +39,7 @@ const AuthStateApp = () => {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/login' component={Authentication}/>
+          <Route path='/launches' component={Launches}/>
         </Switch>
       </Router>
   );
