@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
@@ -10,7 +10,7 @@ import Launches from './pages/Launches';
 import Authentication from './pages/Authentication';
 import NextLaunch from './pages/NextLaunch'
 import PastLaunches from './pages/PastLaunches';
-import Navbar from './components/LaunchNavbar';
+import UpcomingLaunches from './pages/UpcomingLaunches';
 
 Amplify.configure(awsconfig);
 
@@ -42,8 +42,18 @@ const AuthStateApp = () => {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/login' component={Authentication}/>
-          <Route path='/past-launches' component={Launches}/>
-          <Route path='/next-launch' component={NextLaunch}/>
+          <Launches>
+            <Route component={({ match }) =>
+              <div>
+                <Route path='/past-launches' component={PastLaunches} />
+                <Route path='/next-launch' component={NextLaunch} />
+                <Route path='/upcoming-launches' component={UpcomingLaunches} />
+              </div>
+            }/>
+          </Launches>
+
+          {/* <Route path='/past-launches' component={Launches}/>
+          <Route path='/next-launch' component={NextLaunch}/> */}
         </Switch>
       </Router>
   );

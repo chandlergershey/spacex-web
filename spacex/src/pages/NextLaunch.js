@@ -37,7 +37,14 @@ class NextLaunch extends React.Component {
     var { isLoaded, nextLaunch } = this.state;
 
     if(!isLoaded) {
-      return <LoadingSpinner />;
+      return (
+        <div className="fullscreen">
+          <LoadingSpinner />
+        </div>
+      )
+      
+      
+      // <LoadingSpinner />;
     } else {
 
       const missionName = this.state.nextLaunch.data.mission_name;

@@ -3,9 +3,8 @@ import LaunchComponent from '../components/LaunchComponent';
 import axios from 'axios';
 import LoadingSpinner from '../components/LoadingSpinner';
 import {Link} from 'react-router-dom'
-import LaunchNavbar from '../components/LaunchNavbar';
 
-class PastLaunches extends Component {
+class UpcomingLaunches extends Component {
 
   constructor(props) {
     super(props)
@@ -17,7 +16,7 @@ class PastLaunches extends Component {
 
   componentDidMount(){
     axios
-    .get('https://api.spacexdata.com/v3/launches/past')
+    .get('https://api.spacexdata.com/v3/launches/upcoming')
     .then(json => {
       this.setState({ 
         isLoaded: true,
@@ -36,11 +35,15 @@ class PastLaunches extends Component {
       return <LoadingSpinner />;
     } else {
 
+      //const missionName = this.state.nextLaunch.data.mission_name;
+
       return (
+        <>
+        {/* <LaunchNavbar /> */}
         <div className="launches_page_body">
           <div className="past_launches_container">
             <div className="launch_header">
-              <div className="past_launches_header">PAST LAUNCHES</div>
+              <div className="past_launches_header">UPCOMING LAUNCHES</div>
             </div>
             <div className="past_launches_container_body">
               {
@@ -62,9 +65,11 @@ class PastLaunches extends Component {
             </div>
           </div>
         </div>
+        </>
+        
       );
     }
   }
 }
 
-export default PastLaunches
+export default UpcomingLaunches;

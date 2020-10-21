@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap');
 
+.loading-spinner{
+  width:50%;
+  height: 50%;
+  background-color: black;
+  padding-top: 100px;
+  margin: 0 auto;
+}
+
 .loader{
 	border:3px solid #ffffff; /*  #d6336c */
 	width:200px;

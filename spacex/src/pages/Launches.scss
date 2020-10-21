@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap');
 
 #root{
-  overflow: auto !important;
+  // overflow: auto !important;
 }
 
 .launches_page_body{
   background-color: black;
   height: 100%;
   width: 100%;
+  //padding-top: 85px;
   margin-top: 85px;
 }
 

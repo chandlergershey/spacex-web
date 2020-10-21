@@ -22,9 +22,9 @@ function LaunchNavbar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="navbar_link">Past Launches</Nav.Link>
-            <Nav.Link className="navbar_link">Next Launch</Nav.Link>
-            <Nav.Link className="navbar_link" href="#pricing">Upcoming Launches</Nav.Link>
+            <Nav.Link className="navbar_link" href="/past-launches">Past Launches</Nav.Link>
+            <Nav.Link className="navbar_link" href="/next-launch">Next Launch</Nav.Link>
+            <Nav.Link className="navbar_link" href="/upcoming-launches">Upcoming Launches</Nav.Link>
             
           </Nav>
           <Nav id="nav-dropdown">
