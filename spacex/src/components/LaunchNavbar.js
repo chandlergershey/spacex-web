@@ -3,20 +3,12 @@ import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import './LaunchNavbar.scss';
 import {Auth} from 'aws-amplify';
 import SpaceXLogo from '../assets/images/spacex-logo.svg';
-// import { useHistory } from "react-router-dom";
 
 function LaunchNavbar() {
-
-  // let history = useHistory();
-
-  // function signOut(){
-  //   history.push('/');
-  // }
-
   return (
     <div className="launch_navbar_container">
       <Navbar className='launch_navbar' fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
             <img src={SpaceXLogo} style={{width:150, marginTop: -7, marginLeft: 20}} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

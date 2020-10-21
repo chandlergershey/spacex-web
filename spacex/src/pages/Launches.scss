@@ -145,3 +145,40 @@
 .launch_mission_name_text{
   font-size: 20px;
 }
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+
+
+
+.launches_filter_container{
+  text-align: center;
+  width: 100%;
+
+  @include placeholder {
+    font-style:italic;
+    color: white;
+    font-weight:300;
+  }
+
+  .launches_filter{
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    text-align: center;
+    margin: 0 auto;
+    padding: 7px;
+    border-radius: 15px;
+    margin: 0 auto;
+
+    &:focus{
+      outline:none;
+    }
+  }
+
+}
+

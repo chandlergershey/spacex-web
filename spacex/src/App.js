@@ -11,6 +11,7 @@ import Authentication from './pages/Authentication';
 import NextLaunch from './pages/NextLaunch'
 import PastLaunches from './pages/PastLaunches';
 import UpcomingLaunches from './pages/UpcomingLaunches';
+import SelectedLaunch from './pages/SelectedLaunch';
 
 Amplify.configure(awsconfig);
 
@@ -48,6 +49,7 @@ const AuthStateApp = () => {
                 <Route path='/past-launches' component={PastLaunches} />
                 <Route path='/next-launch' component={NextLaunch} />
                 <Route path='/upcoming-launches' component={UpcomingLaunches} />
+                <Route path='/launch' component={SelectedLaunch} />
               </div>
             }/>
           </Launches>

@@ -1,48 +1,89 @@
-import React, { UseState } from 'react';
+import React from 'react';
 import {Row, Col, Container} from 'react-bootstrap';
 import LaunchComponent from '../components/LaunchComponent';
 import Countdown from '../components/Countdown';
 import LoadingSpinner from '../components/LoadingSpinner';
 import LaunchNavbar from '../components/LaunchNavbar';
-import axios from 'axios';
-import Modal from '../components/ModalComponent';
+ 
+import axios from 'axios'
 
-class NextLaunch extends React.Component {
+class SelectedLaunch extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
       nextLaunch: [],
-      isLoaded: false
+      isLoaded: false,
+      isNextLaunch: false
     }
   }
 
   componentDidMount(){
-    axios
-    .get('https://api.spacexdata.com/v3/launches/next')
-    .then(json => {
-      this.setState({ 
-        isLoaded: true,
-        nextLaunch: json
-      });
-      console.log(this.state.nextLaunch.data);
-    })
-    .catch(error => console.error(error));
+    var url = window.location.href;
+    try {
+      url = url.substring(url.indexOf("launch") + 7, url.length);
+      const apiString = 'https://api.spacexdata.com/v3/launches/' + url;
+
+
+      axios
+      .get(apiString)
+      .then(json => {
+        this.setState({ 
+          isLoaded: true,
+          nextLaunch: json,
+          isNextLaunch: true
+        });
+        console.log(this.state.nextLaunch.data);
+      })
+      .catch(
+        error => (
+          console.error(error), 
+          axios
+          .get('https://api.spacexdata.com/v3/launches/next')
+          .then(json => {
+            this.setState({ 
+              isLoaded: true,
+              nextLaunch: json,
+              isNextLaunch: false
+            });
+            console.log(this.state.nextLaunch.data);
+          })
+          .catch(error => console.error(error))
+        )
+      );
+
+    } catch {
+
+      axios
+      .get('https://api.spacexdata.com/v3/launches/next')
+      .then(json => {
+        this.setState({ 
+          isLoaded: true,
+          nextLaunch: json,
+          isNextLaunch: false
+        });
+        console.log(this.state.nextLaunch.data);
+      })
+      .catch(error => console.error(error));
+
+    }
+    
+
+    
   }
 
   render(){
     const currentDate = new Date();
     const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
+    // window.location.href.substring(window.location.href.indexOf("launch/") + 7, window.location.href.length);
 
     var { isLoaded, nextLaunch } = this.state;
 
-    // <div className="fullscreen">
-        //   <Modal />
-        // </div>
-    if(!isLoaded) { 
+    if(!isLoaded) {
       return (
-        
-        <LoadingSpinner />
+        <div className="fullscreen">
+          <LoadingSpinner />
+        </div>
       )
       
       
@@ -111,4 +152,4 @@ class NextLaunch extends React.Component {
   }
 }
 
-export default NextLaunch;
+export default SelectedLaunch;
