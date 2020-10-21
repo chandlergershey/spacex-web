@@ -66,7 +66,7 @@ class NextLaunch extends React.Component {
           <div className="past_launches_container">
             <div className="launch_headline">
               <Container>
-                <Row>
+                <Row xs={1} md={2}>
                   <Col>
                     <div className="launch_mission_name">{missionName}</div>
                     <div className="launch_mission_name_text">Mission Name</div>
@@ -83,20 +83,21 @@ class NextLaunch extends React.Component {
       
                 <Container>
                   <Row className="justify-content-md-center">
-                    <Col className="launch_modal_info_container">
+                    <Col xs={12} sm={12} md={6} lg={4} className="launch_modal_info_container">
                       <div>Rocket</div> <div>{rocketName}</div>
                     </Col>
-                    <Col className="launch_modal_info_container">Weather</Col>
-                    <Col className="launch_modal_info_container">
+                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">Weather</Col>
+                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">
                       <div>Launch Site</div> <div>{launchSite}</div>
                     </Col>
-                  </Row>
-                  <Row className="justify-content-md-center">
-                    <Col className="launch_modal_info_container">Destination</Col>
-                    <Col className="launch_modal_info_container">
+                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">Destination</Col>
+                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">
                       Payload <div>{payloadType}</div><div>{payloadMassKg} kg</div>
                     </Col>
-                    <Col className="launch_modal_info_container">Social</Col>
+                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">Social</Col>
+                  </Row>
+                  <Row xs={12} className="justify-content-md-center">
+                    
                   </Row>
                 </Container>
                 

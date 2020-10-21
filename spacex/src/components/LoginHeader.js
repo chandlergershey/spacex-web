@@ -4,15 +4,15 @@ import BootstrapButton from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../scss/Buttons.scss';
 import SpaceXLogo from '../assets/images/spacex-logo.svg';
-
+import './LoginHeader.scss';
 
 export default function Header() {
 
   return (
     <div className=''>
-        <img src={SpaceXLogo} style={{width:300, marginTop: 33, marginLeft: 50}} />
+        <img src={SpaceXLogo} className="SpaceXLogo_Login"/>
         <Link to='/login'>
-          <BootstrapButton color="primary" className="login-button" style={{float: "right", marginRight: 50, marginTop: 25}}>
+          <BootstrapButton color="primary" className="login-button">
             Enter site
           </BootstrapButton>
         </Link>

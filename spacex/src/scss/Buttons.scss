@@ -1,8 +1,11 @@
 // Login button
+// style={{float: "right", marginRight: 50, marginTop: 25}}
 .login-button {
+  float: right;
   background: none;
   border: 2px solid white;
-  margin-top: 20px;
+  margin-top: 28px;
+  margin-right: 50px;
   margin-left: 20px;
   padding: 9px 13px;
   border-radius: 8px;
@@ -11,5 +14,15 @@
   &:hover{
     background: rgba(255, 255, 255, 0.226);
     border: 2px solid white;
+    margin-left: 37px;
+  }
+  @media only screen and (max-width: 650px) {
+    margin-left: 0px;
+    margin-right: 25px;
+  }
+
+  @media only screen and (max-width: 545px) {
+    margin-left: 0px;
+    margin-right: 25px;
   }
 }
