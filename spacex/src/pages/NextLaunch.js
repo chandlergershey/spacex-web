@@ -18,8 +18,6 @@ class NextLaunch extends React.Component {
     }
   }
 
-  
-
   componentDidMount(){
     axios
     .get('https://api.spacexdata.com/v3/launches/next')
@@ -28,6 +26,8 @@ class NextLaunch extends React.Component {
         nextLaunch: json
       });
         var rocket = this.state.nextLaunch.data.rocket.rocket_id;
+        const launchName = this.state.nextLaunch.data.launch_site.side_id;
+        
         var urlAddress = 'https://api.spacexdata.com/v3/rockets/' + rocket;
         axios
         .get(urlAddress)
@@ -36,6 +36,7 @@ class NextLaunch extends React.Component {
             isLoaded: true,
             rocketData: json
           });
+          console.log(launchName);
           console.log(this.state.rocketData.data);
         })
         .catch(error => console.error(error));
@@ -78,6 +79,10 @@ class NextLaunch extends React.Component {
     const currentDate = new Date();
     const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
 
+    const weatherAPI = 'http://api.weatherstack.com/current?access_key=f95f1aab7875cba50d63534a2cc07dc6';
+
+  
+
     var { isLoaded, nextLaunch, rocketData } = this.state;
 
     if(!isLoaded) { 
@@ -96,6 +101,7 @@ class NextLaunch extends React.Component {
       console.log("TESSSTTT " + this.state.nextLaunch.data.launch_site.site_name);
 
       var rocketInformation = this.state.rocketData.data;
+      var launchInformation = this.state.nextLaunch.data;
       // console.log("TESSSTTT2 " + rocketInformation.rocket_name);
 
 
@@ -124,15 +130,23 @@ class NextLaunch extends React.Component {
       
                 <Container>
                   <Row className="justify-content-md-center">
+
+                    <Col value="rocketsContainer" onClick={() => this.onClick('launchInfoContainer')} xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Mission Info</div>
+                      <LaunchInformation launchInfo={launchInformation}/>
+                    </Col>
+
                     <Col value="rocketsContainer" onClick={() => this.onClick('rocketsContainer')} xs={12} className="launch_modal_info_container">
                       <div className="launch_rocket_header">Rocket</div>
                       <RocketInformation rocketInfo={rocketInformation}/>
                     </Col>
-                    <Col xs={12} className="launch_modal_info_container">Weather</Col>
+                    
+                    <Col xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Weather</div>
+                    </Col>
                     <Col xs={12} className="launch_modal_info_container">
                       <div>Launch Site</div>
                     </Col>
-                    <Col xs={12} className="launch_modal_info_container">Destination</Col>
                     <Col xs={12} className="launch_modal_info_container">
                       Payload
                     </Col>
@@ -164,8 +178,27 @@ function RocketInformation(props) {
       <div>Mass: {props.rocketInfo.mass.kg} kg</div>
       <div>Diameter: {props.rocketInfo.diameter.meters} meters</div>
       <div>Height: {props.rocketInfo.height.meters} (meters)</div>
-      <div><img className="launch_rocket_image" src={props.rocketInfo.flickr_images[0]}/></div>
+      <div className="rocket-info-container-image"><img className="launch_rocket_image" src={props.rocketInfo.flickr_images[0]}/></div>
     </div>
   )
 }
 
+function LaunchInformation(props) {
+  return (
+    <div id="launchInfoContainer" style={{display:"none"}}>
+      <div>Mission Name: {props.launchInfo.mission_name}</div>
+      <div>Flight Number: {props.launchInfo.flight_number}</div>
+      <div>Launch Date UTC: {props.launchInfo.launch_date_utc}</div>
+      <div>Launch Success: {props.launchInfo.launch_success}</div>
+      <div className="rocket-info-container-image"><img className="launch_rocket_image" src={props.launchInfo.links.mission_patch}/></div>
+    </div>
+  )
+}
+
+// function WeatherInformation(){
+//   return (
+//     <div id="WeatherInfoContainer" style={{display:"none"}}>
+//       <div>Mission Name: {props.weatherInfo}</div>
+//     </div>
+//   )
+// }

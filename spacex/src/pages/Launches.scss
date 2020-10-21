@@ -196,11 +196,16 @@ $small: 950px;
 
 .launch_rocket_image{
   width: 100%;
-  max-width: 700px;
+  max-width: 400px;
   padding: 10px 0px 30px 0px;
+  margin: 0 auto;
 }
 
 .launch_rocket_header{
   font-family: 'Exo 2', sans-serif;
+}
+
+.rocket-info-container-image{
+  display: flex;
 }
 
