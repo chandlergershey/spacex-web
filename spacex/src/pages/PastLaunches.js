@@ -12,13 +12,18 @@ class PastLaunches extends Component {
     this.state = {
       nextLaunch: [],
       isLoaded: false,
-      searchLaunch: ''
+      searchMissionName: '',
+      searchFlightNumber: ''
     }
   }
 
-  handleInput = (e) => {
-    console.log(e.target.value);
-    this.setState({searchLaunch: e.target.value})
+  handleMissionNameInput = (e) => {
+    //console.log(e.target.value);
+    this.setState({searchMissionName: e.target.value})
+  }
+
+  handleFlightNumberInput = (e) => {
+    this.setState({searchFlightNumber: e.target.value})
   }
 
   componentDidMount(){
@@ -43,7 +48,11 @@ class PastLaunches extends Component {
     } else {
 
       let filteredLaunches = this.state.nextLaunch.data.filter((launch) => {
-        return launch.mission_name.toLowerCase().includes(this.state.searchLaunch.toLowerCase())
+        return launch.mission_name.toLowerCase().includes(this.state.searchMissionName.toLowerCase())
+      })
+
+      let filteredLaunches2 = filteredLaunches.filter((launch) => {
+        return launch.flight_number.toString().includes(this.state.searchFlightNumber)
       })
 
       return (
@@ -51,11 +60,12 @@ class PastLaunches extends Component {
           <div className="past_launches_container">
             <div className="launch_header">
               <div className="past_launches_header">PAST LAUNCHES</div>
-              <SearchBox handleInput={this.handleInput}/>
+              <SearchBox handleInput={this.handleMissionNameInput} placeholder="Mission Name" />
+              <SearchBox handleInput={this.handleFlightNumberInput} placeholder="Flight Number" />
             </div>
             <div className="past_launches_container_body">
               {
-                filteredLaunches.map(launch => (
+                filteredLaunches2.map(launch => (
                   <div>
                     {/* <i class="far fa-star"></i> */}
                     <Link to={"/launch/" + launch.flight_number} style={{textDecoration: "none"}}>

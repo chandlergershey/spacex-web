@@ -3,6 +3,7 @@ import LaunchComponent from '../components/LaunchComponent';
 import axios from 'axios';
 import LoadingSpinner from '../components/LoadingSpinner';
 import {Link} from 'react-router-dom'
+import SearchBox from '../components/SearchBox';
 
 class UpcomingLaunches extends Component {
 
@@ -10,8 +11,18 @@ class UpcomingLaunches extends Component {
     super(props)
     this.state = {
       nextLaunch: [],
-      isLoaded: false
+      isLoaded: false,
+      searchMissionName: '',
+      searchFlightNumber: ''
     }
+  }
+
+  handleMissionNameInput = (e) => {
+    this.setState({searchMissionName: e.target.value})
+  }
+
+  handleFlightNumberInput = (e) => {
+    this.setState({searchFlightNumber: e.target.value})
   }
 
   componentDidMount(){
@@ -35,7 +46,13 @@ class UpcomingLaunches extends Component {
       return <LoadingSpinner />;
     } else {
 
-      //const missionName = this.state.nextLaunch.data.mission_name;
+      let filteredLaunches3 = this.state.nextLaunch.data.filter((launch) => {
+        return launch.mission_name.toLowerCase().includes(this.state.searchMissionName.toLowerCase())
+      })
+
+      let filteredLaunches4 = filteredLaunches3.filter((launch) => {
+        return launch.flight_number.toString().includes(this.state.searchFlightNumber)
+      })
 
       return (
         <>
@@ -44,14 +61,17 @@ class UpcomingLaunches extends Component {
           <div className="past_launches_container">
             <div className="launch_header">
               <div className="past_launches_header">UPCOMING LAUNCHES</div>
+              <SearchBox handleInput={this.handleMissionNameInput} placeholder="Mission Name" />
+              <SearchBox handleInput={this.handleFlightNumberInput} placeholder="Flight Number" />
             </div>
             <div className="past_launches_container_body">
               {
-                this.state.nextLaunch.data.map(launch => (
+                filteredLaunches4.map((launch, i) => (
                   <div>
                     <i class="far fa-star"></i>
-                    <Link to='/' style={{textDecoration: "none"}}>
+                    <Link to={"/launch/" + launch.flight_number} style={{textDecoration: "none"}}>
                       <LaunchComponent 
+                      key={launch.flight_number}
                       missionName={launch.mission_name} 
                       missionDate={launch.launch_date_utc.substring(0,10)} 
                       flightNumber={launch.flight_number}

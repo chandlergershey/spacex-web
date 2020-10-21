@@ -23,16 +23,19 @@ class LaunchComponent extends Component {
         <div className="launch_container">
             
             <Container>
-              <Row className="launch_container_mission_header">
-                <Col xs={8}>
-                  <div className="launch_container_mission_name">{this.state.missionName}</div>
-                  <div className="launch_container_mission_name_text">Mission Name</div>
-                </Col>
-                <Col xs={3}>
-                  <div className="launch_container_flight_number">{this.state.missionDate}</div>
-                  <div className="launch_container_flight_number_text">Flight Date (UTC)</div>
-                </Col>
-              </Row>
+              <div className='container_border_bottom'>
+                <Row className="launch_container_mission_header">
+                  <Col xs={12} s={6} md={8}>
+                    <div className="launch_container_mission_name">{this.state.missionName}</div>
+                    <div className="launch_container_mission_name_text">Mission Name</div>
+                  </Col>
+                  <Col xs={12} s={6} md={4}>
+                    <div className="launch_container_flight_number">{this.state.missionDate}</div>
+                    <div className="launch_container_flight_number_text">Flight Date (UTC)</div>
+                  </Col>
+                </Row>
+              </div>
+              
               <div className="launch_container_informational_text_group">
                 <div className="launch_container_informational_text">Flight Number: {this.state.flightNumber}</div>
                 <div className="launch_container_informational_text">Rocket Name: {this.state.rocketName}</div>

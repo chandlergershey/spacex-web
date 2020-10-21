@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap');
 
+$extraSmall: 767px;
+
 #root{
   // overflow: auto !important;
 }
@@ -43,6 +45,12 @@
     font-size: 40px;
     text-align: center;
     padding-top: 20px;
+
+    @media only screen and (max-width: $extraSmall) {
+      font-size: 25px;
+      padding-bottom: 10px;
+  }
+
   }
 
   .past_launches_container_body{
@@ -67,28 +75,29 @@
 
       .launch_container_mission_header{
         // background-color: rgb(24, 24, 24);
-        border-bottom: 1px solid white;
+        
         width: 100%;
+        padding-left:15px;
       }
 
-      .launch_container_mission_name{
+      .container_border_bottom{
+        border-bottom: 1px solid white;
+      }
+
+      .launch_container_mission_name, .launch_container_flight_number{
         margin-top: 8px;
         font-size: 35px;
+        @media only screen and (max-width: $extraSmall) {
+            font-size: 20px;
+        }
       }
 
-      .launch_container_mission_name_text{
+      .launch_container_mission_name_text, .launch_container_flight_number_text{
         font-size: 18px;
         margin-bottom: 10px;
-      }
-
-      .launch_container_flight_number{
-        margin-top: 8px;
-        font-size: 35px;
-      }
-
-      .launch_container_flight_number_text{
-        font-size: 18px;
-        margin-bottom: 10px;
+        @media only screen and (max-width: $extraSmall) {
+          font-size: 14px;
+        }
       }
 
       .launch_container_informational_text{
@@ -97,14 +106,13 @@
 
       .launch_container_informational_text_group{
         margin-bottom: 20px;
+        padding-left: 15px;
       }
 
 
     }
   }
 }
-
-
 
 .launch_headline{
   color: white;
