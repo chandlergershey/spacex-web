@@ -13,40 +13,77 @@ class NextLaunch extends React.Component {
     super(props)
     this.state = {
       nextLaunch: [],
-      isLoaded: false
+      isLoaded: false,
+      rocketData: []
     }
   }
+
+  
 
   componentDidMount(){
     axios
     .get('https://api.spacexdata.com/v3/launches/next')
     .then(json => {
       this.setState({ 
-        isLoaded: true,
         nextLaunch: json
       });
+        var rocket = this.state.nextLaunch.data.rocket.rocket_id;
+        var urlAddress = 'https://api.spacexdata.com/v3/rockets/' + rocket;
+        axios
+        .get(urlAddress)
+        .then(json => {
+          this.setState({ 
+            isLoaded: true,
+            rocketData: json
+          });
+          console.log(this.state.rocketData.data);
+        })
+        .catch(error => console.error(error));
+
       console.log(this.state.nextLaunch.data);
     })
     .catch(error => console.error(error));
   }
 
+  // onClick = event => {
+  //   var x = document.getElementById("rocketsContainer");
+  //   if (x.style.display === "none") {
+  //     x.style.display = "block";
+  //   } else {
+  //     x.style.display = "none";
+  //   }
+  // }
+
+  onClick(name){
+    var x = document.getElementById(name);
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  toggleContainer(containerID) {
+    var x = document.getElementById(containerID);
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  
+
   render(){
     const currentDate = new Date();
     const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
 
-    var { isLoaded, nextLaunch } = this.state;
+    var { isLoaded, nextLaunch, rocketData } = this.state;
 
-    // <div className="fullscreen">
-        //   <Modal />
-        // </div>
     if(!isLoaded) { 
       return (
-        
         <LoadingSpinner />
       )
-      
-      
-      // <LoadingSpinner />;
     } else {
 
       const missionName = this.state.nextLaunch.data.mission_name;
@@ -56,8 +93,12 @@ class NextLaunch extends React.Component {
       const launchSite = this.state.nextLaunch.data.launch_site.site_name;
       const payloadType = this.state.nextLaunch.data.rocket.second_stage.payloads[0].payload_type;
       const payloadMassKg = this.state.nextLaunch.data.rocket.second_stage.payloads[0].payload_mass_kg;
+      console.log("TESSSTTT " + this.state.nextLaunch.data.launch_site.site_name);
 
-  
+      var rocketInformation = this.state.rocketData.data;
+      // console.log("TESSSTTT2 " + rocketInformation.rocket_name);
+
+
 
       return (
         <>
@@ -83,18 +124,19 @@ class NextLaunch extends React.Component {
       
                 <Container>
                   <Row className="justify-content-md-center">
-                    <Col xs={12} sm={12} md={6} lg={4} className="launch_modal_info_container">
-                      <div>Rocket</div> <div>{rocketName}</div>
+                    <Col value="rocketsContainer" onClick={() => this.onClick('rocketsContainer')} xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Rocket</div>
+                      <RocketInformation rocketInfo={rocketInformation}/>
                     </Col>
-                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">Weather</Col>
-                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">
-                      <div>Launch Site</div> <div>{launchSite}</div>
+                    <Col xs={12} className="launch_modal_info_container">Weather</Col>
+                    <Col xs={12} className="launch_modal_info_container">
+                      <div>Launch Site</div>
                     </Col>
-                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">Destination</Col>
-                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">
-                      Payload <div>{payloadType}</div><div>{payloadMassKg} kg</div>
+                    <Col xs={12} className="launch_modal_info_container">Destination</Col>
+                    <Col xs={12} className="launch_modal_info_container">
+                      Payload
                     </Col>
-                    <Col xs={12} sm={12} md={6} lg={4}  className="launch_modal_info_container">Social</Col>
+                    <Col xs={12} className="launch_modal_info_container">Social</Col>
                   </Row>
                   <Row xs={12} className="justify-content-md-center">
                     
@@ -113,3 +155,17 @@ class NextLaunch extends React.Component {
 }
 
 export default NextLaunch;
+
+
+function RocketInformation(props) {
+  return (
+    <div id="rocketsContainer" style={{display:"none"}}>
+      <div>Rocket Name: {props.rocketInfo.rocket_name}</div>
+      <div>Mass: {props.rocketInfo.mass.kg} kg</div>
+      <div>Diameter: {props.rocketInfo.diameter.meters} meters</div>
+      <div>Height: {props.rocketInfo.height.meters} (meters)</div>
+      <div><img className="launch_rocket_image" src={props.rocketInfo.flickr_images[0]}/></div>
+    </div>
+  )
+}
+

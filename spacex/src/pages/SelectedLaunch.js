@@ -135,7 +135,7 @@ class SelectedLaunch extends React.Component {
                   <Row className="justify-content-md-center">
                     <Col className="launch_modal_info_container">Destination</Col>
                     <Col className="launch_modal_info_container">
-                      Payload <div>{payloadType}</div><div>{payloadMassKg} kg</div>
+                      <div>Payload {payloadType} {payloadMassKg}</div>
                     </Col>
                     <Col className="launch_modal_info_container">Social</Col>
                   </Row>
