@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import LaunchComponent from '../components/LaunchComponent';
 import axios from 'axios';
+import LoadingSpinner from '../components/LoadingSpinner';
+import {Link} from 'react-router-dom'
+import LaunchNavbar from '../components/LaunchNavbar';
 
 class PastLaunches extends Component {
 
@@ -29,46 +32,42 @@ class PastLaunches extends Component {
 
     var { isLoaded, nextLaunch } = this.state;
 
-
-
-    
-
     if(!isLoaded) {
-      return <h1>Loading</h1>;
+      return <LoadingSpinner />;
     } else {
 
       //const missionName = this.state.nextLaunch.data.mission_name;
 
       return (
-        <div className="past_launches_container">
-          <div className="launch_header">
-            <div className="past_launches_header">PAST LAUNCHES</div>
-          </div>
-          <div className="past_launches_container_body">
-            {
-              this.state.nextLaunch.data.map(launch => (
-                <LaunchComponent 
-                missionName={launch.mission_name} 
-                missionDate={launch.launch_date_utc.substring(0,10)} 
-                flightNumber={launch.flight_number}
-                rocketName={launch.rocket.rocket_name}
-                launchSite={launch.launch_site.site_name}
-                payloadType="Satellite t"/>
-              ))
-            }
-
-            
-
-
-
-
-            {/* <LaunchComponent missionName={"Hi"} missionDate="2020-10-21 t" flightNumber="105 t" rocketName="Falcon 9 t" launchSite="CCAFS SLC 40 t" payloadType="Satellite t"/> */}
-
-
-
-
+        <>
+        {/* <LaunchNavbar /> */}
+        <div className="launches_page_body">
+          <div className="past_launches_container">
+            <div className="launch_header">
+              <div className="past_launches_header">PAST LAUNCHES</div>
+            </div>
+            <div className="past_launches_container_body">
+              {
+                this.state.nextLaunch.data.map(launch => (
+                  <div>
+                    <i class="far fa-star"></i>
+                    <Link to='/' style={{textDecoration: "none"}}>
+                      <LaunchComponent 
+                      missionName={launch.mission_name} 
+                      missionDate={launch.launch_date_utc.substring(0,10)} 
+                      flightNumber={launch.flight_number}
+                      rocketName={launch.rocket.rocket_name}
+                      launchSite={launch.launch_site.site_name}
+                      payloadType={launch.rocket.second_stage.payloads[0].payload_type}/>
+                    </Link>
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </div>
+        </>
+        
       );
     }
   }

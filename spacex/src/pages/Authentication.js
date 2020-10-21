@@ -81,7 +81,7 @@ function MyAuth() {
       const {username, password} = formState;
       await Auth.signIn(username, password);
       updateFormState(() => ({ ...formState, formType: "signedIn" }));
-      history.push('/launches');
+      history.push('/past-launches');
     } catch {
       alert('Error signing in. Please try again.');
     }

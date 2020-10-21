@@ -2,6 +2,8 @@ import React from 'react';
 import {Row, Col, Container} from 'react-bootstrap';
 import LaunchComponent from '../components/LaunchComponent';
 import Countdown from '../components/Countdown';
+import LoadingSpinner from '../components/LoadingSpinner';
+import LaunchNavbar from '../components/LaunchNavbar';
  
 import axios from 'axios'
 
@@ -35,7 +37,7 @@ class NextLaunch extends React.Component {
     var { isLoaded, nextLaunch } = this.state;
 
     if(!isLoaded) {
-      return <h1>Loading</h1>;
+      return <LoadingSpinner />;
     } else {
 
       const missionName = this.state.nextLaunch.data.mission_name;
@@ -49,57 +51,52 @@ class NextLaunch extends React.Component {
   
 
       return (
-        <div className="past_launches_container">
-          <div className="launch_headline">
-            <Container>
-              <Row>
-                <Col>
-                  <div className="launch_mission_name">{missionName}</div>
-                  <div className="launch_mission_name_text">Mission Name</div>
-                </Col>
-                <Col>
-                  <Countdown date={launchDateUTC} />
-                </Col>
-              </Row>
-            </Container>
-            
-            {/* <div className="">{flightNumber}</div>
-            <div className="">Flight Number</div>
-            <div className="">{launchDateUTC}</div>
-            <div className="">Launch Date</div> */}
-
-
-            
-            
-            
-    
-          </div>
-          <div className="">
-    
-            <div className="">
-    
+        <>
+        <LaunchNavbar />
+        <div className="launches_page_body">
+          <div className="past_launches_container">
+            <div className="launch_headline">
               <Container>
-                <Row className="justify-content-md-center">
-                  <Col className="launch_modal_info_container">
-                    <div>Rocket</div> <div>{rocketName}</div>
+                <Row>
+                  <Col>
+                    <div className="launch_mission_name">{missionName}</div>
+                    <div className="launch_mission_name_text">Mission Name</div>
                   </Col>
-                  <Col className="launch_modal_info_container">Weather</Col>
-                  <Col className="launch_modal_info_container">
-                    <div>Launch Site</div> <div>{launchSite}</div>
+                  <Col>
+                    <Countdown date={launchDateUTC} />
                   </Col>
-                </Row>
-                <Row className="justify-content-md-center">
-                  <Col className="launch_modal_info_container">Destination</Col>
-                  <Col className="launch_modal_info_container">
-                    Payload <div>{payloadType}</div><div>{payloadMassKg} kg</div>
-                  </Col>
-                  <Col className="launch_modal_info_container">Social</Col>
                 </Row>
               </Container>
-              
+            </div>
+            <div className="">
+      
+              <div className="">
+      
+                <Container>
+                  <Row className="justify-content-md-center">
+                    <Col className="launch_modal_info_container">
+                      <div>Rocket</div> <div>{rocketName}</div>
+                    </Col>
+                    <Col className="launch_modal_info_container">Weather</Col>
+                    <Col className="launch_modal_info_container">
+                      <div>Launch Site</div> <div>{launchSite}</div>
+                    </Col>
+                  </Row>
+                  <Row className="justify-content-md-center">
+                    <Col className="launch_modal_info_container">Destination</Col>
+                    <Col className="launch_modal_info_container">
+                      Payload <div>{payloadType}</div><div>{payloadMassKg} kg</div>
+                    </Col>
+                    <Col className="launch_modal_info_container">Social</Col>
+                  </Row>
+                </Container>
+                
+              </div>
             </div>
           </div>
         </div>
+        </>
+        
       )
     }
   }

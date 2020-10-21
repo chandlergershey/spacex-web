@@ -15,17 +15,15 @@ function LaunchNavbar() {
 
   return (
     <div className="launch_navbar_container">
-      <Navbar className='launch_navbar' collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar className='launch_navbar' fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">
-          <a href="#">
             <img src={SpaceXLogo} style={{width:150, marginTop: -7, marginLeft: 20}} />
-          </a>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="navbar_link" href="#features">Past Launches</Nav.Link>
-            <Nav.Link className="navbar_link" href="#pricing">Next Launch</Nav.Link>
+            <Nav.Link className="navbar_link">Past Launches</Nav.Link>
+            <Nav.Link className="navbar_link">Next Launch</Nav.Link>
             <Nav.Link className="navbar_link" href="#pricing">Upcoming Launches</Nav.Link>
             
           </Nav>

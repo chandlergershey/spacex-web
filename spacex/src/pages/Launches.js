@@ -11,7 +11,7 @@ import './Launches.scss';
 
 import PastLaunches from './PastLaunches';
 import NextLaunch from './NextLaunch';
-
+import {Route} from 'react-router-dom';
 
 function launches() {
   
@@ -19,16 +19,6 @@ function launches() {
     <>
     <LaunchNavbar />
     <div className="launches_page_body">
-
-      {/* <BootstrapButton variant="default" className="textColor bgColor">
-        TEST TEXT
-      </BootstrapButton>
-      <BootstrapButton variant="primary" className="btn-primary">Primary</BootstrapButton>
-      <MaterialButton variant="contained" color="primary">
-        Material Button
-      </MaterialButton>
-      <ComplexGrid /> */}
-      {/* <SignUp /> */}
 
       {/* <NextLaunch /> */}
       <PastLaunches />

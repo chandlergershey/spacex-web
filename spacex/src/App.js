@@ -8,6 +8,9 @@ import awsconfig from './aws-exports';
 import Home from './pages/LandingPage';
 import Launches from './pages/Launches';
 import Authentication from './pages/Authentication';
+import NextLaunch from './pages/NextLaunch'
+import PastLaunches from './pages/PastLaunches';
+import Navbar from './components/LaunchNavbar';
 
 Amplify.configure(awsconfig);
 
@@ -39,7 +42,8 @@ const AuthStateApp = () => {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/login' component={Authentication}/>
-          <Route path='/launches' component={Launches}/>
+          <Route path='/past-launches' component={Launches}/>
+          <Route path='/next-launch' component={NextLaunch}/>
         </Switch>
       </Router>
   );
