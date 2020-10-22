@@ -146,11 +146,16 @@ class NextLaunch extends React.Component {
                       <LaunchSiteInformation/>
                     </Col>
 
-                    <Col xs={12} className="launch_modal_info_container">
-                      Payload
+                    <Col onClick={() => this.onClick('payloadInfoContainer', 'dropdown-icon-payload-info-container')} xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Payload <FontAwesomeIcon className="dropdown-icon" id='dropdown-icon-payload-info-container' icon={faAngleDown}/></div>
+                      <PayloadInformation/>
                     </Col>
 
-                    <Col xs={12} className="launch_modal_info_container">Social</Col>
+                    <Col onClick={() => this.onClick('socialInfoContainer', 'dropdown-icon-social-info-container')} xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Social <FontAwesomeIcon className="dropdown-icon" id='dropdown-icon-social-info-container' icon={faAngleDown}/></div>
+                      <SocialInformation/>
+                    </Col>
+
                   </Row>
                   <Row xs={12} className="justify-content-md-center">
                     
@@ -198,7 +203,7 @@ function LaunchInformation(props) {
 function WeatherInformation(){
   return (
     <div id="weatherInfoContainer" style={{display:"none"}}>
-      <div>Hello</div>
+      <div>API weather loaded from http://api.weatherstack.com/</div>
     </div>
   )
 }
@@ -206,7 +211,7 @@ function WeatherInformation(){
 function LaunchSiteInformation(){
   return (
     <div id="launchSiteInfoContainer" style={{display:"none"}}>
-      <div>Hello</div>
+      <div>Site location displayed on Google Maps</div>
     </div>
   )
 }
@@ -214,7 +219,7 @@ function LaunchSiteInformation(){
 function PayloadInformation(){
   return (
     <div id="payloadInfoContainer" style={{display:"none"}}>
-      <div>Hello</div>
+      <div>Add Payload to Rocket functionality</div>
     </div>
   )
 }
@@ -222,7 +227,7 @@ function PayloadInformation(){
 function SocialInformation(){
   return (
     <div id="socialInfoContainer" style={{display:"none"}}>
-      <div>Hello</div>
+      <div>Social feeds such as SpaceX twitter, news articles from Google</div>
     </div>
   )
 }
