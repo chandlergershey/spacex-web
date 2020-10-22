@@ -26,9 +26,11 @@ $small: 950px;
   padding-bottom: 30px;
 
   box-shadow:
-          0 0 60px 30px rgba(255, 255, 255, 0.5),  /* inner white */
-          0 0 100px 60px rgba(255, 0, 255, 0.5), /* middle magenta */
-          0 0 140px 90px rgba(0, 255, 255, 0.5); /* outer cyan */
+  0 0 60px 30px rgba(255, 255, 255, 0.5),  /* inner white */
+  0 0 100px 60px rgba(255, 0, 255, 0.5), /* middle magenta */
+  0 0 140px 90px rgba(0, 255, 255, 0.5); /* outer cyan */
+
+  
 
 
   .launch_header{
@@ -73,6 +75,11 @@ $small: 950px;
       -webkit-box-shadow: -1px 0px 14px 0px rgba(255,255,255,0.82);
       -moz-box-shadow: -1px 0px 14px 0px rgba(255,255,255,0.82);
       box-shadow: -1px 0px 14px 0px rgba(255,255,255,0.82);
+
+      &:hover {
+        background-color: rgb(17, 17, 17);
+        transition: all 0.3s ease;
+      }
 
       .launch_container_mission_header{
         // background-color: rgb(24, 24, 24);
@@ -195,10 +202,13 @@ $small: 950px;
 }
 
 .launch_rocket_image{
-  width: 100%;
-  max-width: 400px;
-  padding: 10px 0px 30px 0px;
-  margin: 0 auto;
+  width: auto;
+  max-height: 400px;
+  margin: 20px auto 30px auto;
+  @media only screen and (max-width: $extraSmall) {
+    object-fit: cover;
+    width: 68%;
+  }
 }
 
 .launch_rocket_header{
@@ -206,6 +216,19 @@ $small: 950px;
 }
 
 .rocket-info-container-image{
-  display: flex;
+  display: grid;
 }
 
+.dropdown-icon{
+  float: right;
+  margin-left: 12px;
+  margin-top: 7px;
+  transition: all 0.3s ease;
+}
+
+
+
+.fa-star-not-selected {
+  color: rgb(91, 167, 255);
+  size: 60px;
+}

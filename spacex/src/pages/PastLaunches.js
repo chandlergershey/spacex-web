@@ -67,7 +67,6 @@ class PastLaunches extends Component {
               {
                 filteredLaunches2.map(launch => (
                   <div>
-                    {/* <i class="far fa-star"></i> */}
                     <Link to={"/launch/" + launch.flight_number} style={{textDecoration: "none"}}>
                       <LaunchComponent key={launch.flight_number}
                       missionName={launch.mission_name} 

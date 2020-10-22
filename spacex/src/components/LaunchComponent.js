@@ -2,6 +2,10 @@ import React, {Component} from 'react'
 import '../pages/Launches.scss';
 import {Row, Col, Container} from 'react-bootstrap';
 
+import { faStar as faStarSelected } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarNotSelected } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class LaunchComponent extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +30,7 @@ class LaunchComponent extends Component {
               <div className='container_border_bottom'>
                 <Row className="launch_container_mission_header">
                   <Col xs={12} s={6} md={8}>
-                    <div className="launch_container_mission_name">{this.state.missionName}</div>
+                    <div className="launch_container_mission_name">{this.state.missionName} <a href="/"><FontAwesomeIcon className='fa-star-not-selected' id='' icon={faStarNotSelected}/></a></div>
                     <div className="launch_container_mission_name_text">Mission Name</div>
                   </Col>
                   <Col xs={12} s={6} md={4}>

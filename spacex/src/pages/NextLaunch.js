@@ -7,6 +7,9 @@ import LaunchNavbar from '../components/LaunchNavbar';
 import axios from 'axios';
 import Modal from '../components/ModalComponent';
 
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class NextLaunch extends React.Component {
 
   constructor(props) {
@@ -55,25 +58,17 @@ class NextLaunch extends React.Component {
   //   }
   // }
 
-  onClick(name){
+  onClick(name, dropdownIconID){
     var x = document.getElementById(name);
+    var dropdownIcon = document.getElementById(dropdownIconID);
     if (x.style.display === "none") {
       x.style.display = "block";
+      dropdownIcon.style.transform = "rotate(180deg)";
     } else {
       x.style.display = "none";
+      dropdownIcon.style.transform = "rotate(0deg)";
     }
   }
-
-  toggleContainer(containerID) {
-    var x = document.getElementById(containerID);
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
-
-  
 
   render(){
     const currentDate = new Date();
@@ -131,25 +126,30 @@ class NextLaunch extends React.Component {
                 <Container>
                   <Row className="justify-content-md-center">
 
-                    <Col value="rocketsContainer" onClick={() => this.onClick('launchInfoContainer')} xs={12} className="launch_modal_info_container">
-                      <div className="launch_rocket_header">Mission Info</div>
+                    <Col onClick={() => this.onClick('launchInfoContainer', 'dropdown-icon-mission-info-container')} xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Mission Info <FontAwesomeIcon className="dropdown-icon" id='dropdown-icon-mission-info-container' icon={faAngleDown}/></div>
                       <LaunchInformation launchInfo={launchInformation}/>
                     </Col>
 
-                    <Col value="rocketsContainer" onClick={() => this.onClick('rocketsContainer')} xs={12} className="launch_modal_info_container">
-                      <div className="launch_rocket_header">Rocket</div>
+                    <Col onClick={() => this.onClick('rocketsContainer', 'dropdown-icon-rockets-info-container')} xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Rocket <FontAwesomeIcon className="dropdown-icon" id='dropdown-icon-rockets-info-container' icon={faAngleDown}/></div>
                       <RocketInformation rocketInfo={rocketInformation}/>
                     </Col>
                     
-                    <Col xs={12} className="launch_modal_info_container">
-                      <div className="launch_rocket_header">Weather</div>
+                    <Col onClick={() => this.onClick('weatherInfoContainer', 'dropdown-icon-weather-info-container')} xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Weather <FontAwesomeIcon className="dropdown-icon" id='dropdown-icon-weather-info-container' icon={faAngleDown}/></div>
+                      <WeatherInformation/>
                     </Col>
-                    <Col xs={12} className="launch_modal_info_container">
-                      <div>Launch Site</div>
+
+                    <Col onClick={() => this.onClick('launchSiteInfoContainer', 'dropdown-icon-launch-site-info-container')} xs={12} className="launch_modal_info_container">
+                      <div className="launch_rocket_header">Launch Site <FontAwesomeIcon className="dropdown-icon" id='dropdown-icon-launch-site-info-container' icon={faAngleDown}/></div>
+                      <LaunchSiteInformation/>
                     </Col>
+
                     <Col xs={12} className="launch_modal_info_container">
                       Payload
                     </Col>
+
                     <Col xs={12} className="launch_modal_info_container">Social</Col>
                   </Row>
                   <Row xs={12} className="justify-content-md-center">
@@ -195,10 +195,34 @@ function LaunchInformation(props) {
   )
 }
 
-// function WeatherInformation(){
-//   return (
-//     <div id="WeatherInfoContainer" style={{display:"none"}}>
-//       <div>Mission Name: {props.weatherInfo}</div>
-//     </div>
-//   )
-// }
+function WeatherInformation(){
+  return (
+    <div id="weatherInfoContainer" style={{display:"none"}}>
+      <div>Hello</div>
+    </div>
+  )
+}
+
+function LaunchSiteInformation(){
+  return (
+    <div id="launchSiteInfoContainer" style={{display:"none"}}>
+      <div>Hello</div>
+    </div>
+  )
+}
+
+function PayloadInformation(){
+  return (
+    <div id="payloadInfoContainer" style={{display:"none"}}>
+      <div>Hello</div>
+    </div>
+  )
+}
+
+function SocialInformation(){
+  return (
+    <div id="socialInfoContainer" style={{display:"none"}}>
+      <div>Hello</div>
+    </div>
+  )
+}
