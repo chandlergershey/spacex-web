@@ -28,6 +28,9 @@ class NextLaunch extends React.Component {
       this.setState({ 
         nextLaunch: json
       });
+
+
+
         var rocket = this.state.nextLaunch.data.rocket.rocket_id;
         const launchName = this.state.nextLaunch.data.launch_site.side_id;
         
@@ -43,6 +46,9 @@ class NextLaunch extends React.Component {
           console.log(this.state.rocketData.data);
         })
         .catch(error => console.error(error));
+
+
+        
 
       console.log(this.state.nextLaunch.data);
     })
